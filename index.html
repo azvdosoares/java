@@ -1,0 +1,781 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JÉFFERSON AZEVEDO • Estudo de Caso JavaScript</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f2f4f7;
+    color:#202124;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:#111827;
+    color:white;
+    padding:18px 25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+
+header h1{
+    margin:0;
+    font-size:20px;
+}
+
+header p{
+    margin:5px 0 0;
+    font-size:13px;
+    opacity:.85;
+}
+
+.container{
+    max-width:1000px;
+    margin:25px auto 80px;
+    padding:0 18px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#111827;
+}
+
+h3{
+    color:#374151;
+}
+
+.caso{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    padding:18px;
+    line-height:1.6;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:11px;
+    margin-top:7px;
+    margin-bottom:14px;
+    border:1px solid #cbd5e1;
+    border-radius:7px;
+    font-size:15px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.codigo{
+    background:#111827;
+    color:#e5e7eb;
+    padding:15px;
+    border-radius:8px;
+    font-family:Consolas, monospace;
+    white-space:pre-wrap;
+    margin:10px 0 15px;
+}
+
+.questao{
+    margin-top:25px;
+    padding-top:18px;
+    border-top:1px solid #e5e7eb;
+}
+
+.obrigatorio{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+button{
+    border:0;
+    border-radius:7px;
+    padding:12px 18px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:5px;
+}
+
+.btn{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-sec{
+    background:#475569;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+#mensagemNome{
+    display:none;
+    background:#fee2e2;
+    color:#991b1b;
+    padding:12px;
+    border-radius:7px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+footer{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:9px;
+    font-size:12px;
+}
+
+@media print{
+    header{
+        position:static;
+    }
+
+    footer{
+        position:static;
+    }
+
+    button{
+        display:none;
+    }
+
+    body{
+        background:white;
+    }
+
+    .card{
+        box-shadow:none;
+        border:1px solid #ddd;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>JÉFFERSON AZEVEDO • FUNDAMENTOS DE JAVASCRIPT</h1>
+    <p>Estudo de Caso — Introdução à Programação com JavaScript</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Dados do aluno(a)</h2>
+
+<label>
+<strong>Nome completo <span class="obrigatorio">*</span></strong>
+</label>
+
+<input
+    type="text"
+    id="nome"
+    placeholder="Digite seu nome completo"
+    required
+>
+
+<label>
+<strong>Turma / Matrícula</strong>
+</label>
+
+<input
+    type="text"
+    id="matricula"
+    placeholder="Digite sua turma ou matrícula"
+>
+
+<div id="mensagemNome">
+    ⚠️ Informe seu nome completo antes de iniciar a atividade.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>1. Orientações da atividade</h2>
+
+<p>
+Você foi contratado como estudante de desenvolvimento web para analisar
+um pequeno sistema de uma empresa.
+</p>
+
+<p>
+O sistema possui uma página simples, porém apresenta problemas de
+interação com o usuário. Seu desafio será identificar onde o
+<strong>JavaScript</strong> pode ser utilizado e propor soluções.
+</p>
+
+<p><strong>Durante a atividade você deverá:</strong></p>
+
+<ul>
+<li>Compreender o papel do JavaScript;</li>
+<li>Identificar situações que precisam de programação;</li>
+<li>Explicar conceitos básicos;</li>
+<li>Apresentar pequenos trechos de código;</li>
+<li>Relacionar eventos com ações do usuário;</li>
+<li>Propor melhorias para a página.</li>
+</ul>
+
+<p>
+<strong>Importante:</strong> nas questões de programação, não basta
+dizer o que o código faria. Apresente o código JavaScript que poderia
+ser utilizado.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>2. Estudo de caso — Empresa Web Fácil</h2>
+
+<div class="caso">
+
+<p>
+A empresa <strong>Web Fácil</strong> possui uma página destinada aos
+seus clientes. A página apresenta informações sobre produtos e serviços,
+porém atualmente funciona praticamente como uma página estática.
+</p>
+
+<p>
+O gerente percebeu que os usuários estão tendo dificuldades para
+interagir com o sistema.
+</p>
+
+<p>
+Entre os problemas identificados estão:
+</p>
+
+<ul>
+<li>O botão "Consultar" não apresenta nenhuma resposta;</li>
+<li>O sistema não informa o nome do usuário;</li>
+<li>Não existe cálculo automático de valores;</li>
+<li>O usuário pode deixar campos obrigatórios vazios;</li>
+<li>Não existe mensagem quando uma ação é realizada;</li>
+<li>Os produtos não possuem interação;</li>
+<li>A página precisa responder aos cliques do usuário.</li>
+</ul>
+
+<p>
+A direção solicitou que você analise o problema e indique onde o
+<strong>JavaScript</strong> poderia ser utilizado.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>3. Conhecendo o JavaScript</h2>
+
+<div class="questao">
+
+<h3>Questão 1 — Conceito</h3>
+
+<p>
+Explique com suas palavras qual é a função do JavaScript em uma página
+web.
+</p>
+
+<textarea
+    id="q1"
+    placeholder="Digite sua resposta..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 2 — HTML, CSS e JavaScript</h3>
+
+<p>
+Relacione as três tecnologias abaixo com suas principais funções:
+</p>
+
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+
+<textarea
+    id="q2"
+    placeholder="Explique a função de cada tecnologia..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 3 — Variáveis</h3>
+
+<p>
+A empresa deseja armazenar o nome do cliente em uma variável.
+Apresente um código JavaScript utilizando <strong>let</strong>.
+</p>
+
+<div class="codigo">
+Exemplo do problema:
+
+let nome = "Maria";
+</div>
+
+<p>
+Agora escreva abaixo um exemplo criado por você:
+</p>
+
+<textarea
+    id="q3"
+    placeholder="Digite o código JavaScript..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 4 — Mensagem para o usuário</h3>
+
+<p>
+O sistema precisa apresentar uma mensagem informando:
+<strong>"Bem-vindo ao sistema!"</strong>
+</p>
+
+<p>
+Apresente um código JavaScript capaz de exibir essa mensagem.
+</p>
+
+<textarea
+    id="q4"
+    placeholder="Digite o código JavaScript..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 5 — Evento de clique</h3>
+
+<p>
+Existe um botão chamado <strong>btnConsultar</strong>.
+Quando o usuário clicar nele, o sistema deverá apresentar uma mensagem.
+</p>
+
+<p>
+Qual evento JavaScript deverá ser utilizado?
+</p>
+
+<p>
+Apresente um exemplo de código.
+</p>
+
+<textarea
+    id="q5"
+    placeholder="Digite o código JavaScript..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 6 — Condição</h3>
+
+<p>
+O sistema possui uma variável chamada <strong>idade</strong>.
+</p>
+
+<p>
+Se a idade for maior ou igual a 18, deverá aparecer:
+<strong>"Usuário autorizado"</strong>.
+Caso contrário:
+<strong>"Usuário não autorizado"</strong>.
+</p>
+
+<p>
+Escreva o código utilizando <strong>if / else</strong>.
+</p>
+
+<textarea
+    id="q6"
+    placeholder="Digite o código JavaScript..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 7 — Cálculo</h3>
+
+<p>
+Um produto custa R$ 100,00 e o sistema precisa calcular um desconto
+de 10%.
+</p>
+
+<p>
+Crie um código JavaScript que:
+</p>
+
+<ol>
+<li>Armazene o preço;</li>
+<li>Armazene o percentual de desconto;</li>
+<li>Calcule o valor do desconto;</li>
+<li>Apresente o resultado.</li>
+</ol>
+
+<textarea
+    id="q7"
+    placeholder="Digite o código JavaScript..."
+></textarea>
+
+</div>
+
+
+<div class="questao">
+
+<h3>Questão 8 — Identificação de JavaScript</h3>
+
+<p>
+Analise as situações abaixo e indique em quais delas o JavaScript
+poderia ser utilizado:
+</p>
+
+<ul>
+<li>Alterar uma mensagem quando o botão for clicado;</li>
+<li>Mudar apenas a cor de fundo definida pelo CSS;</li>
+<li>Calcular automaticamente o valor de uma compra;</li>
+<li>Validar se um campo foi preenchido;</li>
+<li>Responder à interação do usuário.</li>
+</ul>
+
+<textarea
+    id="q8"
+    placeholder="Explique quais situações utilizam JavaScript e por quê..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>4. Desafio prático de código</h2>
+
+<p>
+A empresa decidiu criar um botão chamado:
+<strong>btnMensagem</strong>.
+</p>
+
+<p>
+Quando o usuário clicar no botão, deverá aparecer a mensagem:
+</p>
+
+<div class="codigo">
+"Olá! Você realizou uma ação no sistema."
+</div>
+
+<h3>Questão 9</h3>
+
+<p>
+Apresente o código JavaScript necessário para realizar essa ação.
+</p>
+
+<textarea
+    id="q9"
+    placeholder="Escreva o código completo..."
+></textarea>
+
+
+<h3>Questão 10 — Melhoria do sistema</h3>
+
+<p>
+Imagine que você recebeu autorização para melhorar a página.
+Escolha <strong>duas melhorias</strong> que poderiam ser realizadas
+com JavaScript.
+</p>
+
+<p>
+Para cada melhoria, explique o que aconteceria e apresente um pequeno
+trecho de código.
+</p>
+
+<textarea
+    id="q10"
+    style="min-height:180px"
+    placeholder="Descreva as melhorias e apresente os códigos..."
+></textarea>
+
+</div>
+
+
+<div class="card">
+
+<h2>5. Conclusão do estudo de caso</h2>
+
+<p>
+Depois de analisar o problema da empresa Web Fácil, responda:
+</p>
+
+<h3>Questão 11</h3>
+
+<p>
+Por que uma página HTML e CSS pode precisar do JavaScript?
+</p>
+
+<textarea
+    id="q11"
+    placeholder="Digite sua resposta..."
+></textarea>
+
+
+<h3>Questão 12 — Parecer do desenvolvedor</h3>
+
+<p>
+Imagine que você precisa explicar para o gerente da empresa por que
+o JavaScript é importante para o sistema.
+Escreva um pequeno parecer técnico.
+</p>
+
+<textarea
+    id="q12"
+    placeholder="Escreva seu parecer..."
+></textarea>
+
+</div>
+
+
+<div class="card">
+
+<h2>6. Entrega final</h2>
+
+<table style="width:100%; border-collapse:collapse;">
+<tr>
+<th style="border:1px solid #ddd;padding:10px;text-align:left;">
+Item
+</th>
+
+<th style="border:1px solid #ddd;padding:10px;text-align:left;">
+Resposta
+</th>
+</tr>
+
+<tr>
+<td style="border:1px solid #ddd;padding:10px;">
+Principal função do JavaScript
+</td>
+
+<td style="border:1px solid #ddd;padding:10px;">
+<input id="final1">
+</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ddd;padding:10px;">
+Um evento estudado
+</td>
+
+<td style="border:1px solid #ddd;padding:10px;">
+<input id="final2">
+</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ddd;padding:10px;">
+Uma aplicação do JavaScript
+</td>
+
+<td style="border:1px solid #ddd;padding:10px;">
+<input id="final3">
+</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ddd;padding:10px;">
+Um código que aprendi
+</td>
+
+<td style="border:1px solid #ddd;padding:10px;">
+<input id="final4">
+</td>
+</tr>
+</table>
+
+<br>
+
+<button class="btn" onclick="salvar()">💾 Salvar respostas</button>
+
+<button class="btn-sec" onclick="imprimir()">
+🖨️ Imprimir / Salvar em PDF
+</button>
+
+<button class="btn-danger" onclick="limpar()">
+🗑️ Limpar respostas
+</button>
+
+</div>
+
+</div>
+
+
+<footer>
+Desenvolvido para fins educacionais • JÉFFERSON AZEVEDO
+</footer>
+
+
+<script>
+
+/* =========================================
+   VERIFICAÇÃO DO NOME
+========================================= */
+
+function verificarNome(){
+
+    const nome = document.getElementById("nome").value.trim();
+
+    if(nome.length < 3){
+
+        document.getElementById("mensagemNome").style.display = "block";
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+        return false;
+    }
+
+    document.getElementById("mensagemNome").style.display = "none";
+
+    return true;
+}
+
+
+/* =========================================
+   SALVAR
+========================================= */
+
+function salvar(){
+
+    if(!verificarNome()){
+        return;
+    }
+
+    const campos = document.querySelectorAll("input, textarea");
+
+    campos.forEach(campo => {
+
+        localStorage.setItem(
+            "atividade_js_" + campo.id,
+            campo.value
+        );
+
+    });
+
+    alert("Respostas salvas no navegador!");
+}
+
+
+/* =========================================
+   CARREGAR RESPOSTAS
+========================================= */
+
+window.addEventListener("load", function(){
+
+    const campos = document.querySelectorAll("input, textarea");
+
+    campos.forEach(campo => {
+
+        const valor = localStorage.getItem(
+            "atividade_js_" + campo.id
+        );
+
+        if(valor !== null){
+            campo.value = valor;
+        }
+
+    });
+
+});
+
+
+/* =========================================
+   IMPRIMIR
+========================================= */
+
+function imprimir(){
+
+    if(!verificarNome()){
+        return;
+    }
+
+    window.print();
+
+}
+
+
+/* =========================================
+   LIMPAR
+========================================= */
+
+function limpar(){
+
+    if(confirm("Deseja realmente apagar todas as respostas?")){
+
+        const campos = document.querySelectorAll("input, textarea");
+
+        campos.forEach(campo => {
+
+            campo.value = "";
+
+            localStorage.removeItem(
+                "atividade_js_" + campo.id
+            );
+
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
